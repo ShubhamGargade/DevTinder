@@ -46,6 +46,10 @@ const userSchema = new mongoose.Schema({
         min: 18,
         max: 100
     },
+    photoUrl: {
+        type: String,
+        default: "https://upload.wikimedia.org/wikipedia/commons/7/72/Default-welcomer.png"
+    },
     about: {
         type: String,
         default: "This is the default about of the user."

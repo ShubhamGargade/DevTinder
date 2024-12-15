@@ -35,14 +35,16 @@ authRouter.post('/login', async(req, res) => {
             data: user
         });
     } catch (error) {
-        res.status(400).send('Error in logging user' + error.message);
+        res.status(400).send('Error in logging user: ' + error.message);
     }
 });
 
 authRouter.get('/logout', (req, res) => {
     try {
         res.cookie('token', null,{expires: new Date(Date.now())});
-        res.send('Logged out successfuly.');
+        res.json({
+            msg: 'User logged out successfuly'
+        });
     } catch (error) {
         res.status(400).send('Log out failed.');
     }

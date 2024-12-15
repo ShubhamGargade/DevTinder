@@ -14,7 +14,7 @@ profileRouter.get("/profile/view", adminAuth, async(req, res) => {
 
 profileRouter.patch("/profile/edit", adminAuth, async(req, res) => {
     try {
-        const allowedFields = ['age', 'about', 'skills'];
+        const allowedFields = ['age', 'about', 'skills', 'photoUrl'];
         const isDataEditable = Object.keys(req.body).every(field => allowedFields.includes(field));        
         if(!isDataEditable){
             throw new Error('Enter valid data');
@@ -22,9 +22,9 @@ profileRouter.patch("/profile/edit", adminAuth, async(req, res) => {
         Object.keys(req.body).forEach(field => req.user[field] = req.body[field]);
         // User.findByIdAndUpdate(req.user['_id'], req.body);
         req.user.save()
-        res.send('Successfully edited');
+        res.json({message: 'Successfully edited'});
     } catch (error) {
-        res.status(400).send("Error for getting profile" + error.message);
+        res.status(400).send("Error for getting profile: " + error.message);
     }
 });
 

@@ -33,8 +33,8 @@ userRouter.get("/user/connections", adminAuth, async (req, res) => {
                 { toUserId: loggedInUser._id, status: "accepted" }
             ]
         })
-            .populate("fromUserId", "firstName lastName age gender skills")
-            .populate("toUserId", "firstName lastName age gender skills");
+            .populate("fromUserId", "firstName lastName, photoUrl, age gender skills")
+            .populate("toUserId", "firstName lastName, photoUrl, age gender skills");
 
         if (!connectionResults) {
             throw new Error("No connection data found");
@@ -84,7 +84,7 @@ userRouter.get("/feed", adminAuth, async (req, res) => {
 
         connectedUserData.push(loggedInUser._id.toString());
 
-        let allUserData = await User.find({}).select(["firstName", "lastName", "age"]).skip(skip).limit(limit);
+        let allUserData = await User.find({}).select(["firstName", "lastName", "age", "photoUrl", "about", "gender"]).skip(skip).limit(limit);
         allUserData = allUserData.map(user => {
             if (!connectedUserData.includes(user._id.toString())) {
                 return user;
