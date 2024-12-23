@@ -38,8 +38,8 @@ connectionDB().then(() => {
     app.listen(process.env.PORT, () => {
         console.log(`Server is listening from the port ${process.env.PORT} ...`);
     });
-}).catch(() => {
-    console.log('Error connecting db');
+}).catch((error) => {
+    console.log('Error connecting db', error);
 });
 
 module.exports = app;
