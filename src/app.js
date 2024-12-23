@@ -43,3 +43,5 @@ connectionDB().then(() => {
 }).catch(() => {
     console.log('Error connecting db');
 });
+
+module.exports = app;
