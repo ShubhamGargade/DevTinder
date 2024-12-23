@@ -17,9 +17,7 @@ app.use(cors({
     origin: 'http://localhost:4200',
     credentials: true
 }))
-app.use('/', (req, res) => {
-    res.send("Hello Client");
-})
+
 app.use('/', authRouter);
 app.use('/', profileRouter);
 app.use('/', requestRouter);
