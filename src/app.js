@@ -14,7 +14,7 @@ const userRouter = require('./routes/user.js');
 app.use(express.json()); //used to convert JSON to JS Obj for api body.
 app.use(cookieParser());
 app.use(cors({
-    origin: 'http://localhost:4200',
+    origin: process.env.CLIENT_URL,
     credentials: true
 }))
 
