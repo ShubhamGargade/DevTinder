@@ -29,7 +29,7 @@ authRouter.post('/login', async(req, res) => {
         }
         // const token = jwt.sign({_id: user._id}, privateJWTKey, {expiresIn: '7D'});
         const token = user.getJWT();
-        res.cookie("token", token, { expires: new Date(Date.now() + 1800000)});
+        res.cookie("token", token, { expires: new Date(Date.now() + 1800000), sameSite: 'none', secure: true});
         res.json({
             message: 'User Logged in successfully.',
             data: user
