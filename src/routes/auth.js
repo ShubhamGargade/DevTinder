@@ -41,7 +41,7 @@ authRouter.post('/login', async(req, res) => {
 
 authRouter.get('/logout', (req, res) => {
     try {
-        res.cookie('token', null,{expires: new Date(Date.now())});
+        res.cookie('token', null,{expires: new Date(Date.now()), sameSite: 'none', secure: true});
         res.json({
             msg: 'User logged out successfuly'
         });
