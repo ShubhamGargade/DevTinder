@@ -9,7 +9,7 @@ authRouter.post('/signin', async (req, res, next) => {
         const encryptedPassword = await bcrypt.hash(password, 10);
         const user = new User({firstName, lastName, emailId, password: encryptedPassword, gender, age, about, skills});
         await user.save();
-        res.send('User created successfully');
+        res.json({message: 'User created successfully'});
     } catch (error) {
         res.status(400).send("Error creating a user: " + error.message);
     }
