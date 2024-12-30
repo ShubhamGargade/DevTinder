@@ -21,13 +21,6 @@ const adminAuth = async function (req, res, next) {
     }
 }
 
-const userAuth = function(req, res, next) {
-    const authToken = 'isvaliduser';
-    const isAuthValid = authToken === 'isvaliduser';
-    (!isAuthValid) ? (res.status(401).send('Not Authorized user')) : (next());
-}
-
 module.exports = {
-    adminAuth,
-    userAuth
+    adminAuth
 }
