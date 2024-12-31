@@ -11,7 +11,7 @@ userRouter.get("/user/requests/received", adminAuth, async (req, res) => {
         const userRequestData = await ConnectionRequest.find({
             toUserId: user._id,
             status: 'interested'
-        }).populate('fromUserId', 'firstName lastName age skills')
+        }).populate('fromUserId', 'firstName lastName about photoUrl age gender skills')
             .catch(e => console.log(e));
         res.json({
             message: 'Data found.',
@@ -19,7 +19,7 @@ userRouter.get("/user/requests/received", adminAuth, async (req, res) => {
         });
 
     } catch (error) {
-        res.status(400).send("Error in geeting user request data: ", error);
+        res.status(400).send("Error in getting user request data: ", error);
     }
 });
 

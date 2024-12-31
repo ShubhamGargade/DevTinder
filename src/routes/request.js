@@ -65,7 +65,7 @@ connectionRouter.post("/request/review/:status/:requestId", adminAuth, async (re
     
         connectionFound.status = status;
         connectionFound.save();
-        res.send(`${req.user.firstName} has ${status}  ${connectionFound.fromUserId} request.`);
+        res.json({message: `${req.user.firstName} has ${status} connection request.`});
     } catch (error) {
         res.status(400).json({message: 'Error on request action: ' + error});
     }
