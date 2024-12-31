@@ -40,7 +40,7 @@ connectionRouter.post("/request/connect/:status/:toUserId", adminAuth, async (re
 
         await connectionRequest.save();
 
-        res.send(`${req.user.firstName} is ${status} in  ${toUser.firstName}.`);
+        res.json({message: `${req.user.firstName} is ${status} in  ${toUser.firstName}.`});
     } catch (error) {
         res.status(400).send("Error to send connection request" + error.message);
     }
